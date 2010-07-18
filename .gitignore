@@ -1,4 +1,5 @@
 !buildplugin/
+include/
 doc/html/
 sql/
 winbuild/
