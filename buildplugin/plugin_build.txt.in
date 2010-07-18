@@ -1,0 +1,18 @@
+<typesystem>
+
+	<load-typesystem name="typesystem_core.xml" generate="no" />		
+
+	<!--<load-typesystem name="typesystem_gui.xml" generate="no" />-->
+	<!--<load-typesystem name="typesystem_network.xml" generate="no" />-->
+	<!--<load-typesystem name="typesystem_opengl.xml" generate="no" />-->
+	<!--<load-typesystem name="typesystem_phonon.xml" generate="no" />-->
+	<!--<load-typesystem name="typesystem_sql.xml" generate="no" />-->
+	<!--<load-typesystem name="typesystem_svg.xml" generate="no" />-->
+	<!--<load-typesystem name="typesystem_sql.xml" generate="no" />-->
+	<!--<load-typesystem name="typesystem_webkit.xml" generate="no" />-->
+	<!--<load-typesystem name="typesystem_xml.xml" generate="no" />-->
+	<!--<load-typesystem name="typesystem_xmlpatterns.xml" generate="no" />-->
+
+	<!-- qtscripttemplate -->
+	<load-typesystem name="@CMAKE_CURRENT_BINARY_DIR@/plugin_typesystem.xml" generate="yes" />
+</typesystem>

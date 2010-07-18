@@ -1,0 +1,67 @@
+1) Clone qtscriptgenerator repository:
+git clone git@gitorious.org:~asvil/qt-labs/asvils-qtscriptgenerator.git qtscriptgenerator
+2) Build the generator:
+cd qtscriptgenerator/generator
+qmake && make
+3) Run the generator (without arguments):
+./generator
+  This will generate C++ files in qtscripgenerator/generated_cpp and documentation in qtscriptgenerator/doc
+
+4) Build the bindings plugins:
+cd ../qtbindings
+qmake && make
+  Qt modules plugins will be put under qtscriptgenerator/plugins/script
+
+5) To use the plugins in your application, add the plugins path to the library paths
+   (QCoreApplication::setLibraryPaths()), then call QScriptEngine::importExtension()
+   (plugin keys are "qt.core", "qt.gui", etc).
+
+Make your library scriptable.
+1) Clone qtscripttemplate repository
+git clone git://gitorious.org/qtscripttemplate/qtscripttemplate.git
+cd qtscripttemplate
+2) Place your library headers in 'include' subdirectory
+3) Place your library in 'lib' subdirectory
+4) Edit 2 files in 'buildplugin' subdirecotry:
+	 plugin_build.txt.in
+	 plugin_typesystem.xml.in
+
+	 a) plugin_build.txt.in:
+	 		Uncomment Qt modules your library using.
+	 b) plugin_typesystem.xml.in
+	 		Place in this file list of classes your library exported.
+	 		Read more about generator typesystem in http://doc.qt.nokia.com/qtjambi-4.4/html/com/trolltech/qt/qtjambi-typesystem.html
+			
+			Examples:
+				For QObject-based classes (NOTE: All QObject-based classes MUST contains Q_OBJECT macro):
+				<object-type name="NCReport"/>
+				For non QObject-based classes:
+				<value-type name="QDomAttr"/>
+				For enums:
+				<enum-type name="QDomNode::NodeType"/>
+			
+				For remove function from all classes (operator<< and operator >>):
+				<rejection class="*" function-name="operator&lt;&lt;"/>
+				<rejection class="*" function-name="operator&gt;&gt;"/>
+				For remove some function from wraper class:
+				<value-type name="QDomAttr">
+        	<modify-function signature="operator=(QDomAttr)" remove="all"/>
+        	<modify-function signature="nodeType()const" remove="all"/>
+				</value-type>
+				For remove public class fields:
+				<rejection class="QDomNode" field-name="impl"/>
+4) Run cmake with following parameters:
+	 cmake buildplugin -DPROJECT=PLUGIN_NAME -DQS_PACKAGE_NAME=EXTENSON_NAME [-DQT_USE_QTSQL=TRUE [-DQT_USE_QTXML=TRUE [...]]] 
+Where 
+PLUGIN_NAME is Qt Script plugin filename
+EXTENSION_NAME using by QScriptEngine::importExtension()
+and Qt modules your library using.
+
+5) Build generated classes
+	 make
+
+	 Result plugin will be put under plugins/script
+
+See the generated doc/index.html for more information.
+
+Have fun!

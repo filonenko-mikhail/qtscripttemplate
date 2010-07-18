@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<typesystem package="@QS_PACKAGE_NAME@">
+	<!--<object-type name="ExampleQtClass"/>-->
+	<!--<enum-type name="ExampleQtClass::EnumType"/>-->
+	<!--<value-type name="ExampleNonQtClass"/>-->
+</typesystem>
