@@ -10,11 +10,7 @@ project(${PROJECT})
 
 find_package(Qt4 REQUIRED)
 
-# PROJECT NAME
-string(TOUPPER ${PROJECT_NAME} PROJECT_TO_UPPER)
-
 message("Building project ${PROJECT_NAME}")
-
 message("
 Configuration
 -------------
